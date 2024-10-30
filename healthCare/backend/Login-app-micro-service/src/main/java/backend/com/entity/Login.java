@@ -12,8 +12,10 @@ public class Login {
 	@Id
 	@Column(name = "emailid")
 	private String emailid;
+	
 	@Column(name = "password")
 	private String password;
+	
 	@Column(name = "typeofuser")
 	private String typeofuser;
 }

@@ -28,7 +28,7 @@ public class UserService {
 		if(rowsUpdated>0) {
 			return "Profile Updated ";
 		}else {
-			return "profile not updated";
+			return "Profile not Updated";
 		}
 	}
 }

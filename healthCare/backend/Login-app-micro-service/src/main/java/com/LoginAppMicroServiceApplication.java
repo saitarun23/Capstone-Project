@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import backend.com.entity.Login;
 import backend.com.repository.LoginRepository;
+import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication(scanBasePackages = "backend")
 @EnableDiscoveryClient
@@ -21,6 +22,7 @@ public class LoginAppMicroServiceApplication {
 	@Autowired
 	LoginRepository loginRepository;
 	
+	@PostConstruct
 	public void init() {
 		System.out.println("This method called..");
 		Login ll=new Login();

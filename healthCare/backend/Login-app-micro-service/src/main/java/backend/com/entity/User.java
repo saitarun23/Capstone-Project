@@ -2,11 +2,11 @@ package backend.com.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -17,16 +17,16 @@ import lombok.Data;
 public class User {
 
 	@Id
-	@Column(name="email", length = 25, nullable = false)
+	@Column(name="email", length = 25)
 	private String email;
 	
-	@Column(name="firstname", length = 25, nullable = false)
+	@Column(name="firstname", length = 25)
 	private String firstname;
 	
-	@Column(name="lastname", length = 25, nullable = false)
+	@Column(name="lastname", length = 25)
 	private String lastname;
 	
-	@Column(name="password", length = 25, nullable = false)
+	@Column(name="password", length = 25)
 	private String password;
 	
 	@Column(name="dob")
@@ -38,8 +38,7 @@ public class User {
 	@Column(name="address", length = 10)
 	private String address;
 	
-	@OneToOne
-	@MapsId
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="email", referencedColumnName = "email", insertable = false, updatable = false)
 	private Login login;
 }

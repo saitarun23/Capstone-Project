@@ -17,8 +17,8 @@ import backend.com.service.LoginService;
 import backend.com.service.UserService;
 
 @RestController
-@RequestMapping(value="api/user")
-@CrossOrigin()
+@RequestMapping(value="user")
+@CrossOrigin
 public class LoginController {
 
 	@Autowired
@@ -27,17 +27,17 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String checkUserLogin(@RequestBody Login login) {
 		return loginService.checkUserLogin(login);
 	}
 	
-	@PostMapping(value = "/signUp", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "signUp", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String createUserLogin(@RequestBody User user) {
-		return loginService.createAccount(user);
+		return loginService.createAccount(user, "user");
 	}
 	
-	@GetMapping(value = "findUser/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "findUser/{email}")
 	public User findUser(@PathVariable("email") String email) {
 		return userService.findUser(email);
 	}

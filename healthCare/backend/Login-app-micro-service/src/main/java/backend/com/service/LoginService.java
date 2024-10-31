@@ -27,54 +27,54 @@ public class LoginService {
 	public String checkUserLogin(Login login) {
 		Optional<Login> result = loginRepository.findById(login.getEmail());
 		if(result.isPresent()) {
-			Login ll =result.get();
-			if(ll.getPassword().equals(login.getPassword())) {
-				if(ll.getTypeofuser().equals(login.getTypeofuser()) && ll.getTypeofuser().equals("admin")) {
-					return "Admin login successfully";
-				}else if(ll.getTypeofuser().equals(login.getTypeofuser()) && ll.getTypeofuser().equals("user")) {
-					return "User login successfully";
-				}
-				else {
-					return "Type of user is invalid";
-				}
-			}else {
-				return "Password is wrong";
-			}
-		}else {
-			return "Emailid is wrong";
-		}	
+			Login storedLogin =result.get();
+			
+			if (!storedLogin.getTypeofuser().equals(login.getTypeofuser())) {
+	            return "Type of user is invalid"; 
+	        }
+
+	        // Step 2: Check if password matches
+	        if (!storedLogin.getPassword().equals(login.getPassword())) {
+	            return "Password is incorrect";
+	        }
+
+	        // Step 3: Check specific user type and return a corresponding message
+	        if (storedLogin.getTypeofuser().equals("admin")) {
+	            return "Admin login successful";
+	        } else if (storedLogin.getTypeofuser().equals("user")) {
+	            return "User login successful";
+	        } else {
+	            return "Invalid user type";
+	        }
+	    } else {
+	        return "Email is incorrect";
+		}
 	}
 	
-	public String createAccount(User user) {
-	    // Check if the email is unique
-	    if (loginRepository.existsById(user.getEmail())) {
-	        return "Email ID must be unique.";
-	    }
-
-	    // Create a Login entity with the "user" type
+	public String createAccount(User user,String typeofuser) {
 	    Login login = new Login();
 	    login.setEmail(user.getEmail());
 	    login.setPassword(user.getPassword());
-	    login.setTypeofuser("user");
+	    login.setTypeofuser(typeofuser);
 
-	    // Check if the account type is not "admin"
-	    if ("admin".equalsIgnoreCase(login.getTypeofuser())) {
-	        return "You can't create an admin account.";
+	    if (login.getTypeofuser().equals("admin")) {
+	        return "You can't create admin login";
 	    }
 
-	    // Save the login, user, and account records
-	    loginRepository.save(login);
-	    User savedUser = userRepository.save(user);
+	    Optional<Login> existingLogin = loginRepository.findById(login.getEmail());
+	    if (existingLogin.isPresent()) {
+	        return "Account already exists";
+	    } 
+	        
+	        loginRepository.save(login);
+	        userRepository.save(user);
 
-	    Account account = new Account();
-	    account.setAmount(1000); // Initial amount for the account
-	    account.setEmail(user.getEmail());
-	    accountRepository.save(account);
+	        Account account = new Account();
+	        account.setAmount(1000); 
+	        account.setEmail(user.getEmail());
+	        accountRepository.save(account);
+	       
+	        return "Account created successfully";
 
-	    if (savedUser != null) {
-	        return "Account created successfully.";
-	    } else {
-	        return "Account creation failed.";
 	    }
-	}
 }

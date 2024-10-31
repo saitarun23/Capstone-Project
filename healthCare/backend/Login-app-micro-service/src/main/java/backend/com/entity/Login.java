@@ -12,12 +12,12 @@ import lombok.Data;
 public class Login {
 
 	@Id
-	@Column(name="email", length = 25, nullable = false)
+	@Column(name="email", length = 25)
 	private String email;
 	
-	@Column(name="password", length = 25, nullable = false)
+	@Column(name="password", length = 25)
 	private String password;
 	
-	@Column(name="typeofuser", length = 25, nullable = false)
+	@Column(name="typeofuser", length = 25)
 	private String typeofuser;
 }

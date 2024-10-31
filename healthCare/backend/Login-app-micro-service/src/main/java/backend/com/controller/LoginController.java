@@ -42,7 +42,7 @@ public class LoginController {
 		return userService.findUser(email);
 	}
 	
-	@PutMapping(value = "editUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "editUser")
 	public String editUserDetails(@RequestBody User user) {
 		return userService.editUser(user);
 	}

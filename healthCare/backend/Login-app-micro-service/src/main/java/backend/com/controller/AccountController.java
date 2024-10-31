@@ -14,19 +14,19 @@ import backend.com.entity.Account;
 import backend.com.service.AccountService;
 
 @RestController
-@RequestMapping(value="api/user")
+@RequestMapping(value="user")
 @CrossOrigin()
 public class AccountController {
 
 	@Autowired
 	AccountService accountService;
 	
-	@GetMapping(value = "accountInfo/{email}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "accountInfo/{email}")
 	public Account getAccountDetails(@PathVariable("email") String email) {
 		return accountService.getAccountDetails(email);
 	}
 	
-	@PutMapping(value = "addFunds",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "addFunds")
 	public String addFunds(@RequestBody Account account) {
 		return accountService.addFunds(account);
     }

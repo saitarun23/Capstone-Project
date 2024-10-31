@@ -22,7 +22,7 @@ public class AccountService {
 		}else if(accountRepository.addFunds(acc.getAccnumber(), acc.getAmount())>0){
 			return "Amount added successfully";
 		}else {
-			return "Amount did' added";
+			return "Amount didn't added";
 		}
 	}
 }

@@ -14,21 +14,20 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public User findUser(String emailid) {
-		Optional<User> result=userRepository.findById(emailid);
-		if(result.isPresent()) {
-			return result.get();
+	public User findUser(String email) {
+		Optional<User> res=userRepository.findById(email);
+		if(res.isPresent()) {
+			return res.get();
 		}else {
 			return null;
 		}
 	}
 	
 	public String editUser(User user) {
-		int rowsUpdated=userRepository.editUser(user.getPassword(), user.getPhonenumber(), user.getAddress(), user.getEmailid());
-		if(rowsUpdated>0) {
-			return "Profile Updated ";
+		if(userRepository.editUser(user.getPassword(), user.getPhonenumber(), user.getAddress(), user.getEmail())>0) {
+			return "Profile updated succesfully";
 		}else {
-			return "Profile not Updated";
+			return "Profile didn't update";
 		}
 	}
 }

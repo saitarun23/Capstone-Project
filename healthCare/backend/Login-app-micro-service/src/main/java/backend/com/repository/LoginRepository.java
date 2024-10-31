@@ -9,7 +9,8 @@ import backend.com.entity.Login;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, String>{
-
+	
 	@Query("select l from Login l where l.email = :email and l.password = :password")
 	public Login checkUserLogin(@Param("email") String email, @Param("password") String password);
+
 }

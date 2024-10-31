@@ -12,8 +12,8 @@ public class AccountService {
 	@Autowired
 	AccountRepository accountRepository;
 	
-	public Account getAccountDetails(String emailid) {
-		return accountRepository.getAccountDetails(emailid);
+	public Account getAccountDetails(String email) {
+		return accountRepository.getAccountDetails(email);
 	}
 	
 	public String addFunds(Account acc) {

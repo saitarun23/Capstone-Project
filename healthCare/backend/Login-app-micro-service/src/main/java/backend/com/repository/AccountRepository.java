@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import backend.com.entity.Account;
 
-
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer>{
 

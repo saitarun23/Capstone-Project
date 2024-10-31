@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import backend.com.entity.User;
 
+
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 
@@ -16,5 +17,4 @@ public interface UserRepository extends JpaRepository<User, String>{
 	@Transactional
 	@Query("update User user set user.password = :password,user.phonenumber =:phonenumber, user.address=:address where user.email = :email")
 	public int editUser(@Param("password") String password, @Param("phonenumber") String phonenumber,@Param("address") String address, @Param("email") String email);
-	
 }

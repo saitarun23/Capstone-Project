@@ -13,7 +13,7 @@ import backend.com.entity.Medicine;
 import backend.com.service.MedicineService;
 
 @RestController
-@RequestMapping(value="user")
+@RequestMapping(value="medicine")
 @CrossOrigin
 public class MedicineController {
 

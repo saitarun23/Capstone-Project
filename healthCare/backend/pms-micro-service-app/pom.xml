@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Login-app-micro-service</artifactId>
+	<artifactId>pms-micro-service-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Login-app-micro-service</name>
+	<name>pms-micro-service-app</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

@@ -17,8 +17,8 @@ import jakarta.annotation.PostConstruct;
 @EnableDiscoveryClient
 @EntityScan(basePackages = "backend.com.entity")
 @EnableJpaRepositories(basePackages = "backend.com.repository")
-public class LoginAppMicroServiceApplication {
-	
+public class PmsMicroServiceAppApplication {
+
 	@Autowired
 	LoginRepository loginRepository;
 	
@@ -37,9 +37,9 @@ public class LoginAppMicroServiceApplication {
 			System.err.println("Admin Account Created..");
 		}
 	}
-
+	
 	public static void main(String[] args) {
-		SpringApplication.run(LoginAppMicroServiceApplication.class, args);
+		SpringApplication.run(PmsMicroServiceAppApplication.class, args);
 		System.err.println("backend micro service up!");
 	}
 

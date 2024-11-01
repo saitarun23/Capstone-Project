@@ -16,11 +16,11 @@ public class MedicineService {
 	MedicineRepository medicineRepository;
 
 	public String storeMedicineDetails(Medicine medicine) {
-		Optional<Medicine> result = medicineRepository.findById(medicine.getMid());
-		if (result.isPresent()) {
-			return "Medicine Id must be unique";
+		Medicine result = medicineRepository.save(medicine);
+		if (result == null) {
+			return "Medicine record didn't store";
 		} else {
-			return "Medicine recorde stored successfully";
+			return "Medicine record stored successfully";
 		}
 	}
 

@@ -1,6 +1,6 @@
 package backend.com.repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,18 +15,18 @@ import backend.com.entity.Medicine;
 @Repository
 public interface MedicineRepository extends JpaRepository<Medicine, Integer>{
 
-	@Modifying(clearAutomatically = true)
+	@Modifying
 	@Transactional
 	@Query("update Medicine mm set mm.medicinename = :medicinename, mm.companyname = :companyname, "
 			+ "mm.price = :price, mm.quantity = :quantity, mm.expireDate = :expiredate where mm.mid = :mid")
 	public int updateMedicianDetails(@Param("medicinename") String medicinename, @Param("companyname") String companyName, 
 			@Param("price")  float price, @Param("quantity") int quantity, 
-			@Param("expiredate") LocalDateTime expiredate, @Param("mid") int mid);
+			@Param("expiredate") LocalDate expiredate, @Param("mid") int mid);
 
 	@Query("from Medicine mm where mm.uses like %:uses% ")
 	public List<Medicine> searchMedicine(@Param("uses") String uses);
 	
-	@Modifying(clearAutomatically = true)
+	@Modifying
 	@Transactional
 	@Query("update Medicine mm set mm.quantity = mm.quantity - :quantity where mm.mid = :mid")
 	public int updateOrderQuantity(@Param("mid") int mid,@Param("quantity") int quantity);

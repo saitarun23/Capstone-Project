@@ -42,22 +42,22 @@ public class AdminController {
 		return medicineService.storeMedicineDetails(medicine);
 	}
 
-	@PutMapping(value = "/updateMedicine")
-	public String updateMedicianDetails(@RequestBody Medicine medician) {
-		return medicineService.updateMedicineDetails(medician);
+	@PutMapping(value = "updateMedicine")
+	public String updateMedicianDetails(@RequestBody Medicine medicine) {
+		return medicineService.updateMedicineDetails(medicine);
 	}
 
-	@GetMapping(value = "/getAllMedicine")
+	@GetMapping(value = "getAllMedicine")
 	public List<Medicine> getAllMedicineDetails() {
 		return medicineService.getAllMedicineDetails();
 	}
 
-	@DeleteMapping(value = "/deleteMedicineById/{mid}")
+	@DeleteMapping(value = "deleteMedicineById/{mid}")
 	public String deleteMedicineById(@PathVariable("mid") int mid) {
 		return medicineService.deleteMedicine(mid);
 	}
 
-	@GetMapping(value = "/getMedicineById/{mid}")
+	@GetMapping(value = "getMedicineById/{mid}")
 	public Medicine getMedicineById(@PathVariable("mid") int mid) {
 		System.out.println("Mid is " + mid);
 		return medicineService.getMedicineById(mid);

@@ -34,8 +34,8 @@ public class Medicine {
 	@Column(name="uses")
 	private String uses;
 	
-	@Column(name="expirydate")
-	private LocalDate expirydate;
+	@Column(name="expiredate")
+	private LocalDate expiredate;
 	
 	@Column(columnDefinition = "blob")
 	private String imageurl;

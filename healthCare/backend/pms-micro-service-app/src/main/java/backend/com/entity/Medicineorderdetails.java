@@ -22,22 +22,22 @@ public class Medicineorderdetails {
 	@Column(name = "modid")
 	private int modid;
 	
-	@Column(name = "")
+	@Column(name = "mid")
 	private int mid;
 	
-	@Column(name = "")
+	@Column(name = "medicinename")
 	private String medicinename;
 	
-	@Column(name = "")
+	@Column(name = "price")
 	private float price;
 	
-	@Column(name = "")
+	@Column(name = "quantity")
 	private int quantity;
 	
-	@Column(name = "")
+	@Column(name = "emailid")
 	private String emailid;
 	
-	@Column(name = "")
+	@Column(name = "orderdate")
 	private LocalDateTime orderdate;
 	
 	@ManyToOne

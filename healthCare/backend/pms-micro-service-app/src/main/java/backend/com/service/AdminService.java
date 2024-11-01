@@ -11,12 +11,12 @@ public class AdminService {
 
 	@Autowired
 	AdminRepository adminRepository;
-	
+
 	public String checkAdmin(Login login) {
-		Login ll=adminRepository.checkAdminLogin(login.getEmail(), login.getPassword());
-		if(ll==null) {
+		Login ll = adminRepository.checkAdminLogin(login.getEmail(), login.getPassword());
+		if (ll == null) {
 			return "Invalid Admin credential";
-		}else {
+		} else {
 			return "success";
 		}
 	}

@@ -18,7 +18,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>{
 	@Modifying
 	@Transactional
 	@Query("update Medicine mm set mm.medicinename = :medicinename, mm.companyname = :companyname, "
-			+ "mm.price = :price, mm.quantity = :quantity, mm.expireDate = :expiredate where mm.mid = :mid")
+			+ "mm.price = :price, mm.quantity = :quantity, mm.expiredate = :expiredate where mm.mid = :mid")
 	public int updateMedicianDetails(@Param("medicinename") String medicinename, @Param("companyname") String companyName, 
 			@Param("price")  float price, @Param("quantity") int quantity, 
 			@Param("expiredate") LocalDate expiredate, @Param("mid") int mid);

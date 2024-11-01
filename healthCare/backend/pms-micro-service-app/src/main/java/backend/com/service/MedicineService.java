@@ -25,14 +25,21 @@ public class MedicineService {
 	}
 
 	public String updateMedicineDetails(Medicine medicine) {
-		int result=medicineRepository.updateMedicianDetails(medicine.getMedicinename(),medicine.getCompanyname(),
-				medicine.getPrice(), medicine.getQuantity(),medicine.getExpiredate(),medicine.getMid());
-		if(result>0) {
-			return "updated";
-		}else {
-			return "didn't update";
+		Optional<Medicine> result = medicineRepository.findById(medicine.getMid());
+		if (result.isPresent()) {
+			Medicine m = result.get();
+			m.setMedicinename(medicine.getMedicinename());
+			m.setCompanyname(medicine.getCompanyname());
+			m.setPrice(medicine.getPrice());
+			m.setQuantity(medicine.getQuantity());
+			m.setExpiredate(medicine.getExpiredate());
+			medicineRepository.saveAndFlush(m);
+			return "Medicine Details Updated Successfully";
+		} else {
+			return "Medicine not present";
 		}
-		}
+	}
+	
 
 	public List<Medicine> getAllMedicineDetails() {
 		return medicineRepository.findAll();

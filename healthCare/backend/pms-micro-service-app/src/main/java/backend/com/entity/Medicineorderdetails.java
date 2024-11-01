@@ -41,7 +41,7 @@ public class Medicineorderdetails {
 	private LocalDateTime orderdate;
 	
 	@ManyToOne
-	@JoinColumn(name = "orderId")
+	@JoinColumn(name = "orderId", referencedColumnName = "orderId")
 	private Orderdetails orderdetails;
 	
 }

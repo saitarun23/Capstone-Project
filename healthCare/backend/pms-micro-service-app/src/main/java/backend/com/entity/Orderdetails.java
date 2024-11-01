@@ -19,6 +19,7 @@ public class Orderdetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="orderid")
 	private int orderid;
 	
 	@Column(name="emailid")
@@ -27,6 +28,6 @@ public class Orderdetails {
 	@Column(name="totalamount")
 	private float totalamount;
 	
-	@OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "orderdetails", cascade = CascadeType.ALL)
 	private List<Medicineorderdetails> medicineorderdetails;
 }

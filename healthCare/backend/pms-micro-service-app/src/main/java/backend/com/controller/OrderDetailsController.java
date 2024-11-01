@@ -14,7 +14,7 @@ import backend.com.service.MedicineOrderDetialsService;
 import backend.com.service.OrderDetailsService;
 
 @RestController
-@RequestMapping(value="user")
+@RequestMapping(value="Orders")
 @CrossOrigin
 public class OrderDetailsController {
 

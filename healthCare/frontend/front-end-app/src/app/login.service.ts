@@ -6,10 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  adminLogin(loginData: Partial<{ email: any; password: any; type: any; }>) {
-    throw new Error('Method not implemented.');
-  }
-
+ 
   adminUrl: string="http://localhost:9090/admin/login";
   userUrl:string="http://localhost:9090/user/login";
 

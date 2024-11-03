@@ -1,58 +1,62 @@
-import { Component } from '@angular/core';
-import { LoginService } from '../login.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Login } from '../login';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  message: string = '';
 
-  loginRef=new FormGroup({
-    email:new FormControl(),
-    password: new FormControl(),
-    type: new FormControl()
-  });
-
-  msg:string="";
-
-  constructor(public ls:LoginService,public router:Router){}
-
-  signin():void{
-    let loginData=this.loginRef.value;
-
-    if (loginData.type === 'admin') {
-      this.ls.adminSignIn(loginData).subscribe({
-        next: (result: any) => {
-          if (result.status === 200) {
-            this.msg = "Login Done Successfully";
-            this.router.navigate(['adminDashboard']);
-          }
-        },
-        error: () => {
-          this.msg = "Invalid details";
-        },
-        complete: () => console.log("Admin login process complete")
-      });
-    } else if (loginData.type === 'user') {
-      this.ls.userSignIn(loginData).subscribe({
-        next: (result: any) => {
-          if (result.status === 200) {
-            this.msg = "Login Done Successfully";
-            this.router.navigate([`userDashboard/${loginData.email}`]);
-          }
-        },
-        error: () => {
-          this.msg = "Invalid details";
-        },
-        complete: () => console.log("User login process complete")
-      });
-    }
-    this.loginRef.reset();
-
+  constructor(public fb: FormBuilder, public ls:LoginService,  public router: Router) {
+    // Initialize the form with FormBuilder
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      typeofuser: ['', Validators.required]
+    });
   }
 
-  
+  ngOnInit(): void {
+    this.checkCredential();
+  }
+
+  checkCredential(): void {
+    if (this.loginForm.valid) {
+      let loginField: Login = this.loginForm.value;
+
+      if (loginField.typeofuser === "admin") {
+          this.ls.adminSignIn(loginField).subscribe({
+            next:(result:any)=>{
+              this.message=result;
+              
+              this.router.navigate(["adminDashboard"],{skipLocationChange:true});
+            },
+            error:(error:any)=>{
+              console.log(error);
+            },
+            complete:()=>console.log("signin done")
+          })
+      }else if(loginField.typeofuser==="user"){
+        this.ls.userSignIn(loginField).subscribe({
+          next:(result:any)=>{
+            this.message=result;
+            this.router.navigate(["userDashboard/:email"],{skipLocationChange:true});
+          },
+          error:(error:any)=>{
+            console.log(error);
+          },
+          complete:()=>console.log("signin done")
+        })
+      }else{
+        this.message="Please fill all fields correctly.";
+      }
+   }
+   }
 }

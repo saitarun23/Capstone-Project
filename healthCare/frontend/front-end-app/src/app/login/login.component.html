@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="container">
+    <h2>Login Page</h2>
+    <span style="color: red;">{{ msg }}</span>
+    <form [formGroup]="loginRef" (ngSubmit)="signin()" class="form-group">
+      <div class="row">
+        <label for="email" class="col-md-2">Email</label>
+        <div class="col-md-4">
+          <input type="text" formControlName="email" class="form-control" required />
+        </div>
+      </div>
+  
+      <div class="row">
+        <label for="password" class="col-md-2">Password</label>
+        <div class="col-md-4">
+          <input type="password" formControlName="password" class="form-control" required />
+        </div>
+      </div>
+  
+      <div class="row">
+        <label class="col-md-2">Type Of Login</label>
+        <div class="col-md-4">
+          <input type="radio" formControlName="type" value="user" class="form-check-input" /> User
+          <input type="radio" formControlName="type" value="admin" class="form-check-input" /> Admin
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <input type="submit" value="Sign In!" class="btn btn-success" />
+          <input type="reset" value="Reset" class="btn btn-warning" />
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <a routerLink="userSignUp" class="link-primary">
+            <img src="https://st.depositphotos.com/1823785/4664/i/950/depositphotos_46647307-stock-photo-hands-holding-sign-up.jpg" width="130" height="30" />
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+  

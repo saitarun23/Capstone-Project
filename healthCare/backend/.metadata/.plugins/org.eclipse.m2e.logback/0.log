@@ -1675,3 +1675,4 @@ org.eclipse.core.runtime.CoreException: Launch configuration LoginAppMicroServic
 2024-11-01 22:34:07,750 [Worker-149: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2024-11-01 22:34:07,753 [Worker-149: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\SAI TARUN\Capstone Project-1\healthCare\backend\pms-micro-service-app\src\test\resources
 2024-11-03 12:53:50,339 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-11-04 10:39:08,891 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

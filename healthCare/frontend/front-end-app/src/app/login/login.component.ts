@@ -35,25 +35,28 @@ export class LoginComponent implements OnInit {
           this.ls.adminSignIn(loginField).subscribe({
             next:(result:any)=>{
               this.message=result;
-              
+              if(this.message==="Admin login successfully"){
               this.router.navigate(["adminDashboard"],{skipLocationChange:true});
+              }
             },
             error:(error:any)=>{
               console.log(error);
             },
             complete:()=>console.log("signin done")
-          })
+          });
       }else if(loginField.typeofuser==="user"){
         this.ls.userSignIn(loginField).subscribe({
           next:(result:any)=>{
             this.message=result;
+            if(this.message==="User login successfully"){
             this.router.navigate(["userDashboard/:email"],{skipLocationChange:true});
+            }
           },
           error:(error:any)=>{
             console.log(error);
           },
           complete:()=>console.log("signin done")
-        })
+        });
       }else{
         this.message="Please fill all fields correctly.";
       }

@@ -6,17 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
- 
-  adminUrl: string="http://localhost:9090/admin/login";
-  userUrl:string="http://localhost:9090/user/login";
 
-  constructor(public http:HttpClient) { } // DI for HttpClient reference. 
+  baseUrl:string ="http://localhost:9090/login/signin";
+  
+  constructor(public http:HttpClient) { } // DI for HttpClient reference
 
-  adminSignIn(login:any):Observable<string>{
-    return this.http.post(this.adminUrl,login,{responseType:'text'});
+  signIn(login:any): Observable<string> {
+    return this.http.post(this.baseUrl,login,{responseType:'text'});
   }
-
-  userSignIn(login:any):Observable<string>{
-    return this.http.post(this.userUrl,login,{responseType:'text'});
-  }
+  
 }

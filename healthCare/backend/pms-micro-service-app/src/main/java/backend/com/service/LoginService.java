@@ -24,30 +24,23 @@ public class LoginService {
 	@Autowired 
 	AccountRepository accountRepository;
 	
-	public String checkUserLogin(Login login) {
-		Optional<Login> result = loginRepository.findById(login.getEmail());
+	public String SignIn(Login login) {
+		Optional<Login> result=loginRepository.findById(login.getEmail());
 		if(result.isPresent()) {
-			Login storedLogin =result.get();
-			
-			if (!storedLogin.getTypeofuser().equals(login.getTypeofuser())) {
-	            return "Type of user is invalid"; 
-	        }
-
-	        // Step 2: Check if password matches
-	        if (!storedLogin.getPassword().equals(login.getPassword())) {
-	            return "Password is incorrect";
-	        }
-
-	        // Step 3: Check specific user type and return a corresponding message
-	        if (storedLogin.getTypeofuser().equals("admin")) {
-	            return "Admin login successful";
-	        } else if (storedLogin.getTypeofuser().equals("user")) {
-	            return "User login successful";
-	        } else {
-	            return "Invalid user type";
-	        }
-	    } else {
-	        return "Email is incorrect";
+			Login ll=result.get();
+			if(ll.getPassword().equals(login.getPassword())) {
+				if(ll.getTypeofuser().equals("admin") && login.getTypeofuser().equals("admin")) {
+					return "Admin login successfully";
+				}else if(ll.getTypeofuser().equals("user") && login.getTypeofuser().equals("user")) {
+					return "Customer login successfully";
+				}else {
+					return "type of user wrong";
+				}
+			}else {
+				return "Password is wrong";
+			}
+		}else {
+			return "EmailId is wrong";
 		}
 	}
 	

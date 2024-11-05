@@ -1,65 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../login.service';
-import { Login } from '../login';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  message: string = '';
+export class LoginComponent {
+loginRef = new FormGroup({
+email:new FormControl(),
+password:new FormControl(),
+typeofuser:new FormControl()
+});
+msg:string ="";
 
-  constructor(public fb: FormBuilder, public ls:LoginService,  public router: Router) {
-    // Initialize the form with FormBuilder
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      typeofuser: ['', Validators.required]
-    });
-  }
+constructor(public ls:LoginService,public router:Router){}  // DI for service layer. 
+signin(): void {
 
-  ngOnInit(): void {
-    this.checkCredential();
-  }
+  let login = this.loginRef.value;
+  console.log(login);   // in the form of json 
 
-  checkCredential(): void {
-    if (this.loginForm.valid) {
-      let loginField: Login = this.loginForm.value;
+  // coding 
+  //this.ls.signIn(login);   // calling service layer.
+  this.ls.signIn(login).subscribe({
+    next:(result:any)=> {
+          this.msg=result;
+          if(this.msg=="Admin login successfully"){
+              this.router.navigate(["admin"],{skipLocationChange:true});
+          }else if(this.msg=="Customer login successfully"){
+            sessionStorage.setItem("user",login.email);  
+            this.router.navigate(["user"],{skipLocationChange:true});
+          }else {
 
-      if (loginField.typeofuser === "admin") {
-          this.ls.adminSignIn(loginField).subscribe({
-            next:(result:any)=>{
-              this.message=result;
-              if(this.message==="Admin login successfully"){
-              this.router.navigate(["adminDashboard"],{skipLocationChange:true});
-              }
-            },
-            error:(error:any)=>{
-              console.log(error);
-            },
-            complete:()=>console.log("signin done")
-          });
-      }else if(loginField.typeofuser==="user"){
-        this.ls.userSignIn(loginField).subscribe({
-          next:(result:any)=>{
-            this.message=result;
-            if(this.message==="User login successfully"){
-            this.router.navigate(["userDashboard/:email"],{skipLocationChange:true});
-            }
-          },
-          error:(error:any)=>{
-            console.log(error);
-          },
-          complete:()=>console.log("signin done")
-        });
-      }else{
-        this.message="Please fill all fields correctly.";
-      }
-   }
-   }
+          }
+    },
+    error:(error:any)=> {
+        console.log(error);
+    },
+    complete:()=>console.log("signin done!")
+
+  }) 
+  this.loginRef.reset();
+}
+
 }

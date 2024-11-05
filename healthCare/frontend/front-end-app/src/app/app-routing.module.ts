@@ -5,11 +5,10 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent }, 
-  {path:"login",redirectTo:"",pathMatch:"full"},
-  { path: 'adminDashboard', component: AdmindashboardComponent },
-  { path: 'userDashboard/:email', component: UserdashboardComponent },
-  { path: '**', redirectTo: '' } 
+  {path:"",component:LoginComponent},
+  {path:"admin",component:AdmindashboardComponent},
+  {path:"user",component:UserdashboardComponent},
+  {path:"login",redirectTo:"/",pathMatch:'full'}
   
 ];
 

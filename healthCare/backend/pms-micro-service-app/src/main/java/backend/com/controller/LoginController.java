@@ -17,7 +17,7 @@ import backend.com.service.LoginService;
 import backend.com.service.UserService;
 
 @RestController
-@RequestMapping(value="user")
+@RequestMapping(value="login")
 @CrossOrigin
 public class LoginController {
 
@@ -27,9 +27,9 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping(value = "login", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String checkUserLogin(@RequestBody Login login) {
-		return loginService.checkUserLogin(login);
+	@PostMapping(value = "signin", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String signIn(@RequestBody Login login) {
+		return loginService.SignIn(login);
 	}
 	
 	@PostMapping(value = "signUp", consumes = MediaType.APPLICATION_JSON_VALUE)

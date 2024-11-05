@@ -32,7 +32,7 @@ public class LoginController {
 		return loginService.SignIn(login);
 	}
 	
-	@PostMapping(value = "signUp", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "signup", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String createUserLogin(@RequestBody User user) {
 		return loginService.createAccount(user, "user");
 	}

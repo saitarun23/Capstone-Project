@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  baseUrl:string ="http://localhost:9090/login/signin";
+  baseUrl:string ="http://localhost:9090/login";
   
   constructor(public http:HttpClient) { } // DI for HttpClient reference
 
   signIn(login:any): Observable<string> {
-    return this.http.post(this.baseUrl,login,{responseType:'text'});
+    return this.http.post(this.baseUrl+"/signin",login,{responseType:'text'});
   }
   
 }

@@ -14,7 +14,7 @@ import backend.com.entity.Account;
 import backend.com.service.AccountService;
 
 @RestController
-@RequestMapping(value="user")
+@RequestMapping(value="login")
 @CrossOrigin()
 public class AccountController {
 

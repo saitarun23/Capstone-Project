@@ -126,7 +126,6 @@ INDEX VERSION 1.134+C:\SAI TARUN\Capstone Project-1\healthCare\backend\.metadata
 1637731351.index
 2239923206.index
 629955590.index
-3643707742.index
 3030932665.index
 4046671365.index
 925221611.index
